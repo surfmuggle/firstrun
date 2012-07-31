@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<!-- saved from url=(0033)http://jsfiddle.net/EtEPJ/6/show/ -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <title>Shopping Cart example with Knockoutjs  - jsFiddle demo</title>
+  
+  <script type="text/javascript" src="./js/jquery-1.7.1.js"></script>  
+  <link rel="stylesheet" type="text/css" href="./css/normalize.css">
+  <link rel="stylesheet" type="text/css" href="./css/result-light.css">
+  <script type="text/javascript" src="./js/bootstrap-modal.js"></script>
+  <link rel="stylesheet" type="text/css" href="./css/bootstrap.css">    
+  <script type="text/javascript" src="./js/bootstrap-dropdown.js"></script>
+    
+  
+  <style type="text/css">
+    /* #Basic Styles
+================================================== */
+ body {
+        background: #fff;
+        font: 14px/21px "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
+        color: #444;
+        -webkit-font-smoothing: antialiased; /* Fix for webkit rendering */
+        -webkit-text-size-adjust: 100%;
+ }
+ h1, h2, h3 {
+        color: #181818;
+        font-family: "Georgia", "Times New Roman", Helvetica, Arial, sans-serif;
+        font-weight: normal; 
+ }
+ h1 a, h2 a, h3 a, h4 a, h5 a, h6 a { font-weight: inherit; }
+ h1 { font-size: 46px; line-height: 50px; margin-bottom: 14px;}
+ h2 { font-size: 35px; line-height: 40px; margin-bottom: 10px; }
+ h3 { font-size: 28px; line-height: 34px; margin-bottom: 8px; }
+ 
+ p { margin: 0 0 20px 0; }
+ input, label {display: inline;}
+ table { width: 500px; border: 1px solid black;}
+ th,td {line-height: 2.3em; padding-left: 1ex;}
+ th { font-weight: bold;}
+li {padding-left: 1ex;}
+
+  .container { padding: 1ex;}
+.fr{ float: right;}
+.msg, .msg2 { font-weight: bold; padding-right: 10em; }
+.msg{ color: red;}
+.msg2{ color: blue;}
+/* #Links
+================================================== */
+    a, a:visited { color: #333; text-decoration: underline; outline: 0; }
+    a:hover, a:focus { color: #000; }
+    p a, p a:visited { line-height: inherit; }
+
+
+  </style>
+  
+</head>
+<body>
+  <div class="container">
+  
+    <h3>Bootstrap dropdown-button</h3>    
+    <p>Using a dropdown-button / split-button with form elements inside dropdown</p>
+    <p>I had a <a href="http://stackoverflow.com/questions/9340147/boostrap-2-0-adding-a-login-form-to-a-submenu-preventing-close-on-focus">similar Problem</a> as asked here on stackoverflow. The difference is that i wanted to prevent the closing of the contextmenu / dropdown-toggle if someone clicks on the checkbox.</p>
+    <p>You can see the <a href="http://jsfiddle.net/EtEPJ/6/">dropdown button example</a> on jsfiddle.net</p>
+    <table>
+        <tbody><tr>                        
+            <th>Product</th>
+            <th>Action</th>
+        </tr>      
+        <tr>
+          <td>Bike</td>
+          <td>
+                <div class="btn-group">
+                    <a class="btn" href="http://jsfiddle.net/EtEPJ/6/show/#">Buy</a>
+                    <a class="btn dropdown-toggle" data-toggle="dropdown" href="http://jsfiddle.net/EtEPJ/6/show/#">
+                    <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                    <li class="d">buy 1 item (default)</li>                                          
+                    <li class="d">buy 2 item (default)</li>                          
+                    <li class="f"><label for="cb">gift wrap</label><input type="checkbox" name="cb" id="cb" checked=""></li>
+                    <li><a href="http://jsfiddle.net/EtEPJ/6/show/#" onclick="addItem(this, 4)">buy 4 items (inlinehandler addItem)</a></li>                        
+                    </ul>
+                </div>
+            </td>
+        </tr>        
+        <tr>
+          <td>Car</td>
+          <td>
+                <div class="btn-group">
+                    <a class="btn" href="http://jsfiddle.net/EtEPJ/6/show/#">Buy</a>
+                    <a class="btn dropdown-toggle" data-toggle="dropdown" href="http://jsfiddle.net/EtEPJ/6/show/#">
+                    <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                    <li class="d">buy 1 item (default)</li>                                          
+                    <li class="d">buy 2 item (default)</li>                          
+                    <li class="f"><label for="cb">gift wrap</label><input type="checkbox" name="cb" id="cb" checked=""></li>
+                    <li><a href="http://jsfiddle.net/EtEPJ/6/show/#" onclick="addItem(this, 4)">buy 4 items (inlinehandler addItem)</a></li>                        
+                    </ul>
+                </div>
+            </td>
+        </tr>                
+    </tbody></table>
+    <br style="clear: both">    
+    <div id="msg" class="msg"></div>
+    <div id="msg2" class="msg2"></div>
+    
+</div>    
+ 
+
+  
+
+
+<script type="text/javascript">//<![CDATA[ 
+
+;        
+var op = { opacity: "toggle"};    
+$(".dropdown-menu li.d").click(function() {
+  $("#msg").text("Handler for li.d .click() called.").animate(op,800).animate(op,800);
+});
+
+$(".dropdown-menu li.f").on('click', function(e) {
+  e.stopPropagation()
+});
+
+
+function addItem(sender, qty){
+    var id = sender.parentNode.parentNode.id;
+    var msg = "Inline function addItem() called called.";    
+    $("#msg2").text(msg + "(id: " + id + ") addItem:  qty: " + qty);
+}
+//]]>  
+
+</script>
+
+
+
+
+
+
+
+</body></html>
