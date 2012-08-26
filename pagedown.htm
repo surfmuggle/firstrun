@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+
+<html>
+
+    <head>
+        <title>PageDown Demo Page</title>
+        
+        <link rel="stylesheet" type="text/css" href="./css/demo.css" />
+        <link rel="stylesheet" type="text/css" href="./css/prettify.css" />
+        
+        <script type="text/javascript" src="./js/Markdown.Converter.js"></script>
+        <script type="text/javascript" src="./js/Markdown.Sanitizer.js"></script>
+        <script type="text/javascript" src="./js/Markdown.Editor.js"></script>
+        <style type="text/css">
+            .js {margin: 1em 3em;}
+        </style>
+    </head>
+    
+<body>
+<section>
+    <div style="width: 580px; height: 500px; float:left;  margin: 1em;">
+        <div id="wmd-button-bar"></div>
+        <textarea class="wmd-input" id="wmd-input" style="width: 90%; height: 90%; float:left;">
+# This is a *h1* heading
+Called with  plain **Markdown**, except that the input is sanitized:
+
+## Second level heading *h2*
+h2 heading are achieved by putting two \#\# at the begining of the line
+
+
+## Lists
+#### Bullet List
+* Bullet points are easy with \* the star. So easy
+    * that you can create a sub-level list by adding 4 blank spaces
+    * in front of the bullet list
+* try it out
+
+### Numbered List
+
+1. a numbered list is simple
+   1. numbering is achieved by using a number and a point compined at the begining of the line like this: *1\.* 
+7. during the translation the autonumbering will be set
+
+        </textarea>
+    </div>
+<div id="wmd-preview" style="width: 480px; float:left; margin-left: 50px;"></div>
+</section>    
+<hr style="clear: both;" />
+
+        
+
+
+        <script type="text/javascript">
+            (function () {
+                var converter1 = Markdown.getSanitizingConverter();
+                var editor1 = new Markdown.Editor(converter1);
+                editor1.run();
+                                
+                var help = function () { alert("Do you need help?"); }
+                                
+            })();
+
+(function () {
+
+        var db = window.indexedDB.open('FriendDB', 'My Friends!');
+        if (db.version != '1') {
+          // User's first visit, initialize database.
+          db.createObjectStore('Friends', // name of new object store
+                                'id',      // key path
+                                true);     // auto increment?
+          db.setVersion('1');
+        } else {
+          // DB already initialized.
+        }
+        // body...
+
+        var store = db.openObjectStore('Friends');
+
+        var user = store.put({name: 'Eric', gender: 'male', likes: 'html5'});
+        console.log(user.id); // Expect 1
+        var user = store.put({name: 'Jane', gender: 'female', likes: 'shoes'});
+        console.log(user.id); // Expect 1
+
+})();
+
+        </script>
+
+<section style="float: left;">
+
+    <div class="hcenter" id="indexeddb-example">
+      <p>
+        <button onclick="indexedDbSample.idbCreate()">create objectStore</button>
+        <button onclick="indexedDbSample.idbRemove()">remove objectStore</button>
+      </p>
+      <input type="text" placeholder="key" id="idb-key" size="10"> 
+      <input type="text" placeholder="value" id="idb-value" size="10">
+      <button onclick="indexedDbSample.idbSet()">set</button>
+      <div id="idb-log"><p>Object store created.</p></div>
+      <div class="record-list" id="idb-results-wrapper">
+        <ul class="record-list" id="idb-results">
+            <li><span class="keyval" contenteditable="" 
+                onblur="indexedDbSample.updateKey('foo', this)">foo</span> =&gt; <span
+                class="keyval" contenteditable="" 
+                onblur="indexedDbSample.updateValue('foo', this)">myFoo</span>&nbsp; 
+                <a href="javascript:void(0)" onclick="indexedDbSample.deleteKey('foo')">[Delete]</a ></li>
+            <li><span class="keyval" contenteditable=""
+                 onblur="indexedDbSample.updateKey('foo1', this)">foo1</span> =&gt; 
+                 <span  class="keyval" contenteditable="" 
+                 onblur="indexedDbSample.updateValue('foo1', this)">myFoo1</span>&nbsp; <a 
+                 href="javascript:void(0)" 
+                 onclick="indexedDbSample.deleteKey('foo1')">[Delete]</a>
+            </li>
+            </ul>
+        </div>
+    </div>
+
+  </section>
+
+<div style="float: left;">
+<section class="js" style="float: left;">
+    <pre class="prettyprint"><span class="kwd">var</span><span class="pln"> db </span><span class="pun">=</span><span class="pln"> </span><b><span class="pln">window</span><span class="pun">.</span><span class="pln">indexedDB</span><span class="pun">.</span><span class="pln">open</span></b><span class="pun">(</span><span class="str">'FriendDB'</span><span class="pun">,</span><span class="pln"> </span><span class="str">'My Friends!'</span><span class="pun">);</span><span class="pln"><br><br></span><span class="kwd">if</span><span class="pln"> </span><span class="pun">(</span><span class="pln">db</span><span class="pun">.</span><span class="pln">version </span><span class="pun">!=</span><span class="pln"> </span><span class="str">'1'</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln"><br>&nbsp; </span><span class="com">// User's first visit, initialize database.</span><span class="pln"><br>&nbsp; db</span><span class="pun">.</span><b><span class="pln">createObjectStore</span></b><span class="pun">(</span><span class="str">'Friends'</span><span class="pun">,</span><span class="pln"> </span><span class="com">// name of new object store</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span class="str">'id'</span><span class="pun">,</span><span class="pln"> &nbsp; &nbsp; &nbsp;</span><span class="com">// key path</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span class="kwd">true</span><span class="pun">);</span><span class="pln"> &nbsp; &nbsp; </span><span class="com">// auto increment?</span><span class="pln"><br>&nbsp; db</span><span class="pun">.</span><span class="pln">setVersion</span><span class="pun">(</span><span class="str">'1'</span><span class="pun">);</span><span class="pln"><br></span><span class="pun">}</span><span class="pln"> </span><span class="kwd">else</span><span class="pln"> </span><span class="pun">{</span><span class="pln"><br>&nbsp; </span><span class="com">// DB already initialized.</span><span class="pln"><br></span><span class="pun">}</span></pre>
+  </section>
+
+<section class="js" style="float: left;">
+    <pre class="prettyprint"><span class="kwd">var</span><span class="pln"> store </span><span class="pun">=</span><span class="pln"> db</span><span class="pun">.</span><b><span class="pln">openObjectStore</span></b><span class="pun">(</span><span class="str">'Friends'</span><span class="pun">);</span><span class="pln"><br><br></span><span class="kwd">var</span><span class="pln"> user </span><span class="pun">=</span><span class="pln"> </span><b><span class="pln">store</span><span class="pun">.</span><span class="pln">put</span></b><span class="pun">({</span><span class="pln">name</span><span class="pun">:</span><span class="pln"> </span><span class="str">'Eric'</span><span class="pun">,</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;gender</span><span class="pun">:</span><span class="pln"> </span><span class="str">'male'</span><span class="pun">,</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;likes</span><span class="pun">:</span><span class="pln"> </span><span class="str">'html5'</span><span class="pun">});</span><span class="pln"><br><br>console</span><span class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="pln">user</span><span class="pun">.</span><span class="pln">id</span><span class="pun">);</span><span class="pln"> </span><span class="com">// Expect 1</span></pre>
+  </section>  
+</div>
+</div>
+
+    </body>
+</html>
