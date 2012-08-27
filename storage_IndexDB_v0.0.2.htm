@@ -1,0 +1,52 @@
+<!DOCTYPE html> 
+<html>
+  <head>
+    <title>HTML5 Storage</title>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1"/>
+    <script>
+      window.URL = window.URL ? window.URL :
+                   window.webkitURL ? window.webkitURL : window;
+      window.BlobBuilder = window.WebKitBlobBuilder || window.MozBlobBuilder || window.BlobBuilder;
+      window.requestFileSystem  = window.requestFileSystem || window.webkitRequestFileSystem;
+    </script>
+  </head>
+<body>
+<div class="slide">
+  <header><h1>HTML5 storage - Indexed DB Demo</h1></header>
+
+	  <h2>This demo works with:</h2>
+	  <ul>
+			<li>Iron 20.0.1150.1 
+			<li>Chrome Version 22.0.1229.6 dev-m
+      <li>  
+	  </ul>
+   <section>
+
+    <div class="hcenter" id="indexeddb-example">
+      <p>
+        <button onclick="indexedDbSample.idbCreate()">create objectStore</button>
+        <button onclick="indexedDbSample.idbRemove()">remove objectStore</button>
+      </p>
+      <input type="text" placeholder="key" id="idb-key" size="25"  /> <br />
+	  <input type="text" placeholder="key" id="idb-title" size="30" value="Einleitung" /> <br />
+	  <textarea type="text" placeholder="value" id="idb-text" cols="80" rows="8" >
+Genehmigung des Protokolls vom xx.08.2012
+	  </textarea><br />
+      <button onclick="indexedDbSample.idbSet()">set</button>
+      <div id="idb-log"></div>
+      <div class="record-list" id="idb-results-wrapper"></div>
+    </div>
+	<script src="./js/indexDB_v02.js"></script>
+    <script>
+
+    </script>
+  </section>
+</div>
+
+<div id='prot-out'>
+
+</div>
+
+</body>
+</html>
