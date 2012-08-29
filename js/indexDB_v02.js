@@ -139,9 +139,20 @@
         function updateValue_(key, element) {
           var transaction = idb_.transaction(["myObjectStore"], IDBTransaction.READ_WRITE); // Create a transaction that locks the world.
           var objectStore = transaction.objectStore("myObjectStore");
-          var request = objectStore.put(element.textContent, key);
-          request.onerror = idbError_;
-          request.onsuccess = idbShow_;
+          if(key && element){
+              var request = objectStore.put(element.textContent, key);
+              request.onerror = idbError_;
+              request.onsuccess = idbShow_;
+          }else {
+            var value ={};
+            var key = document.getElementById('idb-key').value;
+            value.title = document.getElementById('idb-title').value;
+            value.text = document.getElementById('idb-text').value;
+            var request = objectStore.put(value, key);
+            request.onerror = idbError_;
+            request.onsuccess = idbShow_;            
+
+          }
         }
 
         function deleteKey_(key) {
