@@ -4,50 +4,37 @@
     <title>HTML5 Storage</title>
     <meta charset="UTF-8"/>
     <meta http-equiv="X-UA-Compatible" content="chrome=1"/>
-    <script>
-      window.URL = window.URL ? window.URL :
-                   window.webkitURL ? window.webkitURL : window;
-      window.BlobBuilder = window.WebKitBlobBuilder || window.MozBlobBuilder || window.BlobBuilder;
-      window.requestFileSystem  = window.requestFileSystem || window.webkitRequestFileSystem;
-    </script>
+    <style type="text/css">
+      fieldset { background-color: lightblue; padding: 2ex; margin: 1ex;}
+      .editPanel { width: 420px;} 
+      .outputPanel {width: 520px;} 
+    </style>
   </head>
 <body>
 <div class="slide">
-  <header><h1>HTML5 storage - Indexed DB Demo</h1></header>
-
-	  <h2>This demo works with:</h2>
-	  <ul>
-			<li>Iron 20.0.1150.1 
-			<li>Chrome Version 22.0.1229.6 dev-m
-      <li>  
-	  </ul>
-   <section>
-
-    <div class="hcenter" id="indexeddb-example">
-      <p>
-        <button onclick="idxDB.idbCreate()">create objectStore</button>
-        <button onclick="idxDB.idbRemove()">remove objectStore</button>
-      </p>
-    <input type="text" placeholder="key" id="idb-key" size="25"  /> <br />
-	  <label>Titel: <input type="text" placeholder="key" id="idb-title" size="45" value="Einleitung" /> <br />
-	  <textarea type="text" placeholder="value" id="idb-text" cols="80" rows="8" >
-Genehmigung des Protokolls vom xx.08.2012
-	  </textarea><br />
-      <button onclick="idxDB.idbSet()">set</button>
-      <button onclick="idxDB.updateValue()">update</button>
+  <h1>HTML5 storage - Indexed DB Demo</h1>  
+  <div class="editPanel" id="indexeddb-example">      
+    <fieldset>
+    	  <label>Titel: </label><input id="idb-title" value="Introduction" type="text" size="45" /> 
+        <input id="idb-key" type="text" placeholder="key" size="25"  /> <br />
+    	  <textarea type="text" placeholder="value" id="idb-text" cols="80" 
+            rows="8" >Item Nummer xx</textarea>
+        <button onclick="idxDB.saveEntry()">save entry</button>
+        <button onclick="idxDB.updateValue()">update</button>        
+    </fieldset>    
+    <button onclick="idxDB.idbCreate()">create objectStore</button>
+    <button onclick="idxDB.idbRemove()">remove objectStore</button>           
+  </div>
+  <div id="outputPanel" class="outputPanel">
       <div id="idb-log"></div>
       <div class="record-list" id="idb-results-wrapper"></div>
-    </div>
-	<script src="./js/indexDB_v03.js"></script>
-    <script>
-
-    </script>
-  </section>
+  </div>	
+  
 </div>
 
 <div id='prot-out'>
 
 </div>
-
+<script type="text/javascript" src="./js/db_v05.js"></script>
 </body>
 </html>
