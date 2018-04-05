@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>My first Vue app</title>
+  <script src="https://unpkg.com/vue"></script>
+</head>
+<body>
+<div id="app-6">
+  <p>{{ message }}</p>
+  <input v-model="message">
+  <button v-on:click="reverseMessage">Reverse Message</button>
+</div>
+
+  <script>
+    var app6 = new Vue({
+      el: '#app-6',
+      data: { message: 'Hello Vue!' },
+      methods: {
+        reverseMessage: function () {
+          this.message = this.message.split('').reverse().join('') 
+        }
+      } // end of methods
+    })
+  </script>
+</body>
+</html>
