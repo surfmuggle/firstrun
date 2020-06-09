@@ -1,0 +1,9 @@
+
+// go to 
+// https://www.arcgis.com/apps/opsdashboard/index.html#/bda7594740fd40299423467b48e9ecf6
+// select all positive tested from the bar chart
+var g = document.querySelectorAll("g.amcharts-graph-column")
+// extract the dates
+g.forEach(x => (dates.push(x.getAttribute('aria-label') ? x.getAttribute('aria-label').trim().split(' ') : [,,])))
+// create an array of tested per day
+dates.forEach(a =>( cases.push( { "month": a[0], "day": a[1]?a[1].split(",")[0]: '', "amount": parseInt(a[3], 10)?parseInt(a[3], 10):0})));
